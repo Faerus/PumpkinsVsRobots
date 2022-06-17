@@ -592,9 +592,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890129359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.125, z: -1}
-  m_LocalScale: {x: 0.1, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.3185, y: 0.16, z: -2}
+  m_LocalScale: {x: 0.035000004, y: 0.07000001, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 286415966}
   m_RootOrder: 2
@@ -640,8 +640,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.745283, g: 0.5674928, b: 0.46755964, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2df75de994515604fb166c2b61d83a9f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -734,81 +734,91 @@ MonoBehaviour:
   <Team1>k__BackingField:
     <Name>k__BackingField: Les Citrouilles
     <Health>k__BackingField: 1000
-    _money: 0
+    _money: 50
     <UnitType1>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 200
+      <Name>k__BackingField: Pum
+      <Cost>k__BackingField: 50
       <Health>k__BackingField: 0
       <Power>k__BackingField: 0
       <Speed>k__BackingField: 0
+      <Shortcut>k__BackingField: 97
     <UnitType2>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
+      <Name>k__BackingField: Slice
+      <Cost>k__BackingField: 80
       <Health>k__BackingField: 0
       <Power>k__BackingField: 0
       <Speed>k__BackingField: 0
+      <Shortcut>k__BackingField: 122
     <UnitType3>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
+      <Name>k__BackingField: Bloody
+      <Cost>k__BackingField: 125
       <Health>k__BackingField: 0
       <Power>k__BackingField: 0
       <Speed>k__BackingField: 0
+      <Shortcut>k__BackingField: 101
     <UnitType4>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
+      <Name>k__BackingField: Big P
+      <Cost>k__BackingField: 175
       <Health>k__BackingField: 0
       <Power>k__BackingField: 0
       <Speed>k__BackingField: 0
+      <Shortcut>k__BackingField: 114
     <UnitType5>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
+      <Name>k__BackingField: Meltkin
+      <Cost>k__BackingField: 250
       <Health>k__BackingField: 0
       <Power>k__BackingField: 0
       <Speed>k__BackingField: 0
+      <Shortcut>k__BackingField: 116
   <Team2>k__BackingField:
     <Name>k__BackingField: Les Robots
     <Health>k__BackingField: 1000
-    _money: 0
+    _money: 50
     <UnitType1>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
-      <Health>k__BackingField: 0
-      <Power>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <Name>k__BackingField: zafer
+      <Cost>k__BackingField: 20
+      <Health>k__BackingField: 60
+      <Power>k__BackingField: 4
+      <Speed>k__BackingField: 6
+      <Shortcut>k__BackingField: 104
     <UnitType2>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
-      <Health>k__BackingField: 0
-      <Power>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <Name>k__BackingField: quet2.0
+      <Cost>k__BackingField: 83
+      <Health>k__BackingField: 98
+      <Power>k__BackingField: 6
+      <Speed>k__BackingField: 5
+      <Shortcut>k__BackingField: 106
     <UnitType3>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
-      <Health>k__BackingField: 0
-      <Power>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <Name>k__BackingField: bnb hki u 0
+      <Cost>k__BackingField: 134
+      <Health>k__BackingField: 142
+      <Power>k__BackingField: 7
+      <Speed>k__BackingField: 4
+      <Shortcut>k__BackingField: 107
     <UnitType4>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
-      <Health>k__BackingField: 0
-      <Power>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <Name>k__BackingField: "d\xE9chir"
+      <Cost>k__BackingField: 171
+      <Health>k__BackingField: 184
+      <Power>k__BackingField: 10
+      <Speed>k__BackingField: 3
+      <Shortcut>k__BackingField: 108
     <UnitType5>k__BackingField:
       <Prefab>k__BackingField: {fileID: 0}
-      <Name>k__BackingField: 
-      <Cost>k__BackingField: 0
-      <Health>k__BackingField: 0
-      <Power>k__BackingField: 0
-      <Speed>k__BackingField: 0
+      <Name>k__BackingField: le robot delamort
+      <Cost>k__BackingField: 359
+      <Health>k__BackingField: 256
+      <Power>k__BackingField: 30
+      <Speed>k__BackingField: 2
+      <Shortcut>k__BackingField: 109
 --- !u!1 &1345887098
 GameObject:
   m_ObjectHideFlags: 0

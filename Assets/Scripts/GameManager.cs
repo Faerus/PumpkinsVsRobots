@@ -109,4 +109,7 @@ public class UnitTypeSettings
 
     [field: SerializeField]
     public float Speed { get; set; } = 5;
+
+    [field: SerializeField]
+    public KeyCode Shortcut { get; set; }
 }
