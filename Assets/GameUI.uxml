@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Style.uss?fileID=7433441132597879392&amp;guid=109616ce3c113ec40af108337f9b5d26&amp;type=3#Style" />
+    <ui:GroupBox name="Team1" style="background-color: rgb(255, 255, 255); height: 164px; width: auto; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; align-items: flex-end; justify-content: flex-start; flex-direction: row; position: absolute; bottom: 10px; left: 10px;">
+        <ui:Label text="Team 1" display-tooltip-when-elided="true" name="lbTeam1Name" style="font-size: 20px; -unity-font-style: bold; -unity-text-align: upper-left; position: absolute; top: 10px; left: 10px;" />
+        <ui:Button text="Unit 1" display-tooltip-when-elided="true" name="bTeam1Unit1" class="button-unit-type" />
+        <ui:Button text="Unit 2" display-tooltip-when-elided="true" name="bTeam1Unit2" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 3" display-tooltip-when-elided="true" name="bTeam1Unit3" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 4" display-tooltip-when-elided="true" name="bTeam1Unit4" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 5" display-tooltip-when-elided="true" name="bTeam1Unit5" class="unit-type-button button-unit-type" />
+        <ui:Label text="0 $" display-tooltip-when-elided="true" name="lbTeam1Money" style="font-size: 20px; -unity-font-style: normal; -unity-text-align: upper-left; position: absolute; top: 10px; right: 10px;" />
+    </ui:GroupBox>
+    <ui:GroupBox name="Team2" style="background-color: rgb(255, 255, 255); height: 164px; width: auto; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; align-items: flex-end; justify-content: flex-start; flex-direction: row; position: absolute; bottom: 10px; right: 10px;">
+        <ui:Label text="Team 2" display-tooltip-when-elided="true" name="lbTeam2Name" style="font-size: 20px; -unity-font-style: bold; -unity-text-align: upper-left; position: absolute; top: 10px; left: 10px;" />
+        <ui:Button text="Unit 1" display-tooltip-when-elided="true" name="bTeam2Unit1" class="button-unit-type" />
+        <ui:Button text="Unit 2" display-tooltip-when-elided="true" name="bTeam2Unit2" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 3" display-tooltip-when-elided="true" name="bTeam2Unit3" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 4" display-tooltip-when-elided="true" name="bTeam2Unit4" class="unit-type-button button-unit-type" />
+        <ui:Button text="Unit 5" display-tooltip-when-elided="true" name="bTeam2Unit5" class="unit-type-button button-unit-type" />
+        <ui:Label text="0 $" display-tooltip-when-elided="true" name="lbTeam2Money" style="font-size: 20px; -unity-font-style: normal; -unity-text-align: upper-left; position: absolute; top: 10px; right: 10px;" />
+    </ui:GroupBox>
+</ui:UXML>
