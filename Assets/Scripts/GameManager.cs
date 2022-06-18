@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -47,6 +48,11 @@ public class GameManager : InstanceMonoBehaviour<GameManager>
             this.Team2.Money += this.MoneyIncrement;
         }
     }
+
+    public TeamSettings GetEnemyTeam(TeamSettings myTeam)
+    {
+        return this.Team1 == myTeam ? this.Team2 : this.Team1;
+    }
 }
 
 [Serializable]
@@ -56,7 +62,10 @@ public class TeamSettings
     public string Name { get; set; } = "Team";
 
     [field: SerializeField]
-    public int Health { get; set; } = 1000;
+    public float Health { get; set; } = 1000;
+
+    [field: SerializeField]
+    public Transform Spawn { get; set; }
 
     [SerializeField]
     private int _money = 0;
@@ -74,19 +83,23 @@ public class TeamSettings
         }
     }
 
-    [field: Header("Unit types")]
     [field: SerializeField]
-    public UnitTypeSettings UnitType1 { get; set; }
-    [field: SerializeField]
-    public UnitTypeSettings UnitType2 { get; set; }
-    [field: SerializeField]
-    public UnitTypeSettings UnitType3 { get; set; }
-    [field: SerializeField]
-    public UnitTypeSettings UnitType4 { get; set; }
-    [field: SerializeField]
-    public UnitTypeSettings UnitType5 { get; set; }
+    public List<UnitTypeSettings> UnitTypes { get; set; } = new List<UnitTypeSettings>();
+
+    public List<Unit> Units { get; set; } = new List<Unit>();
 
     public event EventHandler OnMoneyChanged;
+
+    public Unit GetClosest(Vector3 position, float range)
+    {
+        var query = from unit in this.Units
+                    let distance = Vector3.Distance(position, unit.transform.position)
+                    where distance <= range && unit.State != Unit.States.Dead
+                    orderby distance
+                    select unit;
+
+        return query.FirstOrDefault();
+    }
 }
 
 [Serializable]
@@ -96,13 +109,16 @@ public class UnitTypeSettings
     public GameObject Prefab { get; set; }
 
     [field: SerializeField]
+    public Sprite Sprite { get; set; }
+
+    [field: SerializeField]
     public string Name { get; set; } = "Unit";
 
     [field: SerializeField]
     public int Cost { get; set; } = 50;
 
     [field: SerializeField]
-    public int Health { get; set; } = 100;
+    public float Health { get; set; } = 100;
 
     [field: SerializeField]
     public float Power { get; set; } = 10;

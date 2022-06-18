@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AssetManager : InstanceMonoBehaviour<AssetManager>
 {
-    [field: Header("Sprites")]
+    [field: Header("Prefabs")]
     [field: SerializeField]
-    public Sprite TestSprite { get; set; }
+    public GameObject Unit { get; set; }
 }

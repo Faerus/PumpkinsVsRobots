@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -27,13 +28,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.Team2.OnMoneyChanged += this.Team2_OnMoneyChanged;
 
         // Set team units
-        root.Query<Label>().ForEach(l => this.SetLabel(l));
+        root.Query<Label>().ForEach(l => this.FillLabel(l));
 
         // Handle unit creation buttons
         root.Query<Button>().ForEach(b => b.clickable.clickedWithEventInfo += this.Clickable_ClickedWithEventInfo);
-
-        //this.Team1Unit1Button = root.Q<Button>("bTeam1Unit1");
-        //this.Team1Unit1Button.clickable.clickedWithEventInfo += Clickable_ClickedWithEventInfo;
     }
 
     private void Team1_OnMoneyChanged(object sender, EventArgs e)
@@ -45,89 +43,82 @@ public class UIManager : MonoBehaviour
         this.Team2Money.text = $"{GameManager.Instance.Team2.Money} $";
     }
 
-    private void SetLabel(Label label)
+    private void FillLabel(Label label)
     {
-        var match = Regex.Match(label.name, "lbT([0-9])U([0-9])([a-zA-Z]*)");
-        if(!match.Success)
+        if(this.TryParse(label, out TeamSettings team, out UnitTypeSettings unitType, out string info))
         {
-            return;
+            switch (info)
+            {
+                case "Key": label.text = unitType.Shortcut.ToString(); break;
+                case "Cost": label.text = $"{unitType.Cost}$"; break;
+                case "Name": label.text = unitType.Name; break;
+            }
+        }
+    }
+    private bool TryParse(VisualElement control, out TeamSettings team, out UnitTypeSettings unitType, out string info)
+    {
+        var match = Regex.Match(control.name, "[a-z]+T([0-9])U([0-9])([a-zA-Z]*)");
+        if (match.Success)
+        {
+            int teamId = Convert.ToInt32(match.Groups[1].Value);
+            int unitTypeId = Convert.ToInt32(match.Groups[2].Value);
+            info = match.Groups[3].Value;
+
+            team = teamId < 2 ? GameManager.Instance.Team1 : GameManager.Instance.Team2;
+            unitType = team.UnitTypes.ElementAt(unitTypeId - 1);
+        }
+        else
+        {
+            team = null;
+            unitType = null;
+            info = null;
         }
 
-        int teamId = Convert.ToInt32(match.Groups[1].Value);
-        int unitTypeId = Convert.ToInt32(match.Groups[2].Value);
-        string info = match.Groups[3].Value;
-
-        TeamSettings team = teamId < 2 ? GameManager.Instance.Team1 : GameManager.Instance.Team2;
-        UnitTypeSettings unitType = null;
-        switch(unitTypeId)
-        {
-            case 1: unitType = team.UnitType1; break;
-            case 2: unitType = team.UnitType2; break;
-            case 3: unitType = team.UnitType3; break;
-            case 4: unitType = team.UnitType4; break;
-            case 5: unitType = team.UnitType5; break;
-        }
-
-        string text = null;
-        switch(info)
-        {
-            case "Key": text = unitType.Shortcut.ToString(); break;
-            case "Cost": text = $"{unitType.Cost}$"; break;
-            case "Name": text = unitType.Name; break;
-        }
-
-        label.text = text;
+        return match.Success;
     }
 
     private void Clickable_ClickedWithEventInfo(EventBase obj)
     {
         Button sender = (Button)obj.target;
-        Debug.Log(sender.name);
+        if (this.TryParse(sender, out TeamSettings team, out UnitTypeSettings unitType, out string info))
+        {
+            this.Build(team, unitType);
+        }
     }
 
     private void Update()
     {
-        // TODO: move in change event
-        if(Input.GetKeyDown(GameManager.Instance.Team1.UnitType1.Shortcut))
+        this.CheckTeamShortcuts(GameManager.Instance.Team1);
+        this.CheckTeamShortcuts(GameManager.Instance.Team2);
+    }
+    private void CheckTeamShortcuts(TeamSettings team)
+    {
+        var unitType = team.UnitTypes
+            .OrderByDescending(u => u.Cost)
+            .FirstOrDefault(u => team.Money >= u.Cost && Input.GetKeyDown(u.Shortcut));
+
+        if (unitType != null)
         {
-            Debug.Log(GameManager.Instance.Team1.UnitType1.Name);
+            this.Build(team, unitType);
         }
-        else if(Input.GetKeyDown(GameManager.Instance.Team1.UnitType2.Shortcut))
+    }
+
+    private void Build(TeamSettings team, UnitTypeSettings unitType)
+    {
+        if(team.Money < unitType.Cost)
         {
-            Debug.Log(GameManager.Instance.Team1.UnitType2.Name);
+            Debug.Log($"Not enough money for a '{unitType.Name}'");
+            return;
         }
-        else if(Input.GetKeyDown(GameManager.Instance.Team1.UnitType3.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team1.UnitType3.Name);
-        }
-        else if(Input.GetKeyDown(GameManager.Instance.Team1.UnitType4.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team1.UnitType4.Name);
-        }
-        else if(Input.GetKeyDown(GameManager.Instance.Team1.UnitType5.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team1.UnitType5.Name);
-        }
-        
-        if (Input.GetKeyDown(GameManager.Instance.Team2.UnitType1.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team2.UnitType1.Name);
-        }
-        else if (Input.GetKeyDown(GameManager.Instance.Team2.UnitType2.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team2.UnitType2.Name);
-        }
-        else if (Input.GetKeyDown(GameManager.Instance.Team2.UnitType3.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team2.UnitType3.Name);
-        }
-        else if (Input.GetKeyDown(GameManager.Instance.Team2.UnitType4.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team2.UnitType4.Name);
-        }
-        else if (Input.GetKeyDown(GameManager.Instance.Team2.UnitType5.Shortcut))
-        {
-            Debug.Log(GameManager.Instance.Team2.UnitType5.Name);
-        }
+
+        var gameObject = Instantiate(AssetManager.Instance.Unit);
+        gameObject.name = $"{unitType.Name}{team.Units.Count(u => u.UnitType == unitType) + 1}";
+        gameObject.transform.position = team.Spawn.position;
+        Unit unit = gameObject.GetComponent<Unit>();
+        unit.Initialize(team, unitType);
+
+        // Pay the cost
+        team.Money -= unitType.Cost;
+        Debug.Log($"'{unitType.Name}' built");
     }
 }

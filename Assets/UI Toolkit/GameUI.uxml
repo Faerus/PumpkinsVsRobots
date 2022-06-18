@@ -1,9 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Style.uss?fileID=7433441132597879392&amp;guid=109616ce3c113ec40af108337f9b5d26&amp;type=3#Style" />
-    <ui:GroupBox name="Team1" class="team-box" style="position: absolute; left: 10px; bottom: 10px;">
+    <ui:GroupBox name="Team1" class="team-box" style="position: absolute; left: 10px; bottom: 10px; background-color: rgba(221, 0, 0, 255);">
         <ui:Label text="Team 1" display-tooltip-when-elided="true" name="lbTeam1Name" style="font-size: 20px; -unity-font-style: bold; -unity-text-align: upper-left; position: absolute; top: 5px; left: 10px;" />
         <ui:Label text="0 $" display-tooltip-when-elided="true" name="lbTeam1Money" style="font-size: 20px; -unity-font-style: normal; -unity-text-align: upper-left; position: absolute; top: 5px; right: 10px;" />
         <ui:Button display-tooltip-when-elided="true" name="bT1U1" class="button-unit-type" style="background-image: url(&apos;project://database/Assets/Sprites/Pumpkin1.png?fileID=2800000&amp;guid=d3c45767b37104847b6afa1734afd76d&amp;type=3#Pumpkin1&apos;); -unity-background-scale-mode: stretch-to-fill;">
+            <ui:VisualElement name="vT1U1Loader" style="background-color: rgba(0, 0, 0, 0.55); flex-grow: 1; height: 0;" />
             <ui:Label text="50$" display-tooltip-when-elided="true" name="lbT1U1Cost" style="height: 20px; position: absolute;" />
             <ui:Label text="A" display-tooltip-when-elided="true" name="lbT1U1Key" style="height: 20px; position: absolute; right: 0; -unity-font-style: bold; color: rgb(0, 0, 0);" />
             <ui:Label text="Unit 1" display-tooltip-when-elided="true" name="lbT1U1Name" style="height: 20px; position: absolute; color: rgb(0, 0, 0); bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font-style: normal;" />
@@ -29,7 +30,7 @@
             <ui:Label text="Unit 5" display-tooltip-when-elided="true" name="lbT1U5Name" style="height: 20px; position: absolute; color: rgb(0, 0, 0); bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font-style: normal;" />
         </ui:Button>
     </ui:GroupBox>
-    <ui:GroupBox name="Team2" class="team-box" style="position: absolute; bottom: 10px; right: 10px;">
+    <ui:GroupBox name="Team2" class="team-box" style="position: absolute; bottom: 10px; right: 10px; background-color: rgba(0, 0, 222, 255);">
         <ui:Label text="Team 2" display-tooltip-when-elided="true" name="lbTeam2Name" style="font-size: 20px; -unity-font-style: bold; -unity-text-align: upper-left; position: absolute; top: 5px; left: 10px;" />
         <ui:Label text="0 $" display-tooltip-when-elided="true" name="lbTeam2Money" style="font-size: 20px; -unity-font-style: normal; -unity-text-align: upper-left; position: absolute; top: 5px; right: 10px;" />
         <ui:Button display-tooltip-when-elided="true" name="bT2U1" class="button-unit-type" style="background-image: url(&apos;project://database/Assets/Sprites/Robot1.png?fileID=2800000&amp;guid=dc97e379a3106084c88c3399a243cbc5&amp;type=3#Robot1&apos;); -unity-background-scale-mode: stretch-to-fill;">
