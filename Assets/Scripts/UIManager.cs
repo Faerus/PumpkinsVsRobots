@@ -111,9 +111,12 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        var gameObject = Instantiate(AssetManager.Instance.Unit);
-        gameObject.name = $"{unitType.Name}{team.Units.Count(u => u.UnitType == unitType) + 1}";
-        gameObject.transform.position = team.Spawn.position;
+        var gameObject = Instantiate(AssetManager.Instance.Unit, team.Spawn);
+        gameObject.name = $"{unitType.Name}{++team.UnitCounter}";
+
+        float spawnVariance = UnityEngine.Random.Range(-0.5f, 0.5f);
+        gameObject.transform.position = team.Spawn.position + new Vector3(0, spawnVariance, spawnVariance);
+
         Unit unit = gameObject.GetComponent<Unit>();
         unit.Initialize(team, unitType);
 

@@ -23,6 +23,9 @@ public class GameManager : InstanceMonoBehaviour<GameManager>
 
     private void Awake()
     {
+        this.Team1.Initialize();
+        this.Team2.Initialize();
+
         this.InvokeRepeating("IncrementMoney", this.MoneyIncrementFrequency, this.MoneyIncrementFrequency);
     }
 
@@ -62,7 +65,19 @@ public class TeamSettings
     public string Name { get; set; } = "Team";
 
     [field: SerializeField]
-    public float Health { get; set; } = 1000;
+    private float _health = 1000;
+    public float Health
+    {
+        get { return _health; }
+        set
+        {
+            _health = value;
+            this.HealthBar.SetHealth(value);
+        }
+    }
+
+    [field: SerializeField]
+    public HealthBar HealthBar { get; set; }
 
     [field: SerializeField]
     public Transform Spawn { get; set; }
@@ -87,18 +102,28 @@ public class TeamSettings
     public List<UnitTypeSettings> UnitTypes { get; set; } = new List<UnitTypeSettings>();
 
     public List<Unit> Units { get; set; } = new List<Unit>();
+    public int UnitCounter { get; set; }
 
     public event EventHandler OnMoneyChanged;
+
+    public void Initialize()
+    {
+        this.HealthBar.SetMaxHealth(this.Health);
+    }
 
     public Unit GetClosest(Vector3 position, float range)
     {
         var query = from unit in this.Units
-                    let distance = Vector3.Distance(position, unit.transform.position)
+                    let distance = this.DistanceX(unit.transform.position, position)
                     where distance <= range && unit.State != Unit.States.Dead
                     orderby distance
                     select unit;
 
         return query.FirstOrDefault();
+    }
+    private float DistanceX(Vector3 position1, Vector3 position2)
+    {
+        return position1.x > position2.x ? position1.x - position2.x : position2.x - position1.x;
     }
 }
 
@@ -106,26 +131,37 @@ public class TeamSettings
 public class UnitTypeSettings
 {
     [field: SerializeField]
+    public string Name { get; set; } = "Unit";
+
+    [field: SerializeField]
+    public float Health { get; set; } = 100;
+
+    [field: SerializeField]
+    public float Speed { get; set; } = 5;
+
+    [field: SerializeField]
+    public int Cost { get; set; } = 50;
+
+    [field: SerializeField]
+    public KeyCode Shortcut { get; set; }
+
+    [field: Header("Visual")]
+    [field: SerializeField]
     public GameObject Prefab { get; set; }
 
     [field: SerializeField]
     public Sprite Sprite { get; set; }
 
     [field: SerializeField]
-    public string Name { get; set; } = "Unit";
+    public float Scale { get; set; } = 1;
 
-    [field: SerializeField]
-    public int Cost { get; set; } = 50;
-
-    [field: SerializeField]
-    public float Health { get; set; } = 100;
-
+    [field: Header("Attack")]
     [field: SerializeField]
     public float Power { get; set; } = 10;
 
     [field: SerializeField]
-    public float Speed { get; set; } = 5;
+    public float AttackFrequency { get; set; } = 1;
 
     [field: SerializeField]
-    public KeyCode Shortcut { get; set; }
+    public float AttackDistance { get; set; } = 1f;
 }

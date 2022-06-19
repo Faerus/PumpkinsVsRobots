@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Unit : MonoBehaviour 
 {
-    private const float COLLISION_RADIUS = 0.9f;
     private const float THORN_DAMAGE_PERCENT = 0.5f;
 
     public enum States
@@ -21,22 +21,24 @@ public class Unit : MonoBehaviour
     public TeamSettings Team { get; set; }
     public UnitTypeSettings UnitType { get; set; }
 
-    [field:SerializeField]
-    public float Health { get; set; }
-    [field: SerializeField]
-    public float MaxHealth { get; set; }
+    private float _health;
+    private float Health
+    {
+        get { return _health; }
+        set
+        {
+            _health = value;
+            this.HealthBar.SetHealth(value);
+        }
+    }
 
-    [field: SerializeField]
-    public float Power { get; set; }
-    [field: SerializeField]
-    public float AttackFrequency { get; set; } = 1;
     private float CanAttackIf0 { get; set; }
-    public Unit TargetEnemy { get; set; }
-    
-    [field: SerializeField]
-    public float Speed { get; set; }
-
+    private Unit TargetEnemy { get; set; }
+    private float Direction { get; set; } = 1;
     private SpriteRenderer SpriteRenderer { get; set; }
+
+    [field:SerializeField]
+    private HealthBar HealthBar { get; set; }
 
     private void Awake()
     {
@@ -45,21 +47,19 @@ public class Unit : MonoBehaviour
 
     public void Initialize(TeamSettings team, UnitTypeSettings unitType)
     {
-        this.UnitType = unitType;
         this.Team = team;
         this.Team.Units.Add(this);
         this.EnemyTeam = GameManager.Instance.GetEnemyTeam(team);
+        this.Direction = transform.position.x > this.EnemyTeam.Spawn.position.x ? -1 : 1;
+        this.UnitType = unitType;
 
         this.State = States.Move;
-        this.MaxHealth = unitType.Health;
-        this.Health = this.MaxHealth;
-        this.Power = unitType.Power;
-        this.Speed = unitType.Speed;
+        this.Health = unitType.Health;
+        this.HealthBar.SetMaxHealth(unitType.Health);
+        this.CanAttackIf0 = Random.Range(0, this.UnitType.AttackFrequency);
 
-        if(this.SpriteRenderer != null)
-        { 
-            this.SpriteRenderer.sprite = unitType.Sprite;
-        }
+        transform.localScale *= unitType.Scale;
+        this.SpriteRenderer.sprite = unitType.Sprite;
     }
 
     private void Update()
@@ -76,15 +76,15 @@ public class Unit : MonoBehaviour
                 {
                     break;
                 }
-
-                transform.position = Vector3.MoveTowards(transform.position, this.EnemyTeam.Spawn.position, this.Speed * Time.deltaTime);
+                
+                transform.position += new Vector3(this.Direction * this.UnitType.Speed * Time.deltaTime, 0, 0);
                 break;
 
             case States.AttackUnit:
                 this.CanAttackIf0 -= Time.deltaTime;
                 if(this.CanAttackIf0 <= 0)
                 {
-                    this.CanAttackIf0 = this.AttackFrequency;
+                    this.CanAttackIf0 = this.UnitType.AttackFrequency;
                     this.Attack(this.TargetEnemy);
                 }
 
@@ -95,7 +95,7 @@ public class Unit : MonoBehaviour
                 this.CanAttackIf0 -= Time.deltaTime;
                 if (this.CanAttackIf0 <= 0)
                 {
-                    this.CanAttackIf0 = this.AttackFrequency;
+                    this.CanAttackIf0 = this.UnitType.AttackFrequency;
                     this.AttackEnemyTeam();
                 }
 
@@ -111,7 +111,7 @@ public class Unit : MonoBehaviour
 
     private bool CanAttackUnit()
     {
-        this.TargetEnemy = this.EnemyTeam.GetClosest(transform.position, COLLISION_RADIUS);
+        this.TargetEnemy = this.EnemyTeam.GetClosest(transform.position, this.UnitType.AttackDistance);
         if (this.TargetEnemy != null)
         {
             this.State = States.AttackUnit;
@@ -122,7 +122,7 @@ public class Unit : MonoBehaviour
     }
     private bool CanAttackTeam()
     {
-        if (Vector3.Distance(transform.position, this.EnemyTeam.Spawn.position) < COLLISION_RADIUS * 2)
+        if (Vector3.Distance(transform.position, this.EnemyTeam.Spawn.position) < this.UnitType.AttackDistance + 1)
         {
             this.State = States.AttackTeam;
             return true;
@@ -133,12 +133,12 @@ public class Unit : MonoBehaviour
 
     private void AttackEnemyTeam()
     {
-        this.EnemyTeam.Health -= this.Power;
-        this.ReceiveDamage(this.Power * THORN_DAMAGE_PERCENT);
+        this.EnemyTeam.Health -= this.UnitType.Power;
+        this.ReceiveDamage(this.UnitType.Power * THORN_DAMAGE_PERCENT);
     }
     private void Attack(Unit enemy)
     {
-        enemy.ReceiveDamage(this.Power);
+        enemy.ReceiveDamage(this.UnitType.Power);
     }
     private void ReceiveDamage(float damage)
     {
@@ -152,7 +152,7 @@ public class Unit : MonoBehaviour
     }
     private void Knockback(float power)
     {
-        transform.position = Vector3.MoveTowards(transform.position, this.Team.Spawn.position, power);
+        transform.position -= new Vector3(this.Direction * power, 0, 0);
     }
 
     private void OnDestroy()
