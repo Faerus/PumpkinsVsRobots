@@ -6,8 +6,11 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoBehaviour
+public class GameUI : MonoBehaviour
 {
+    private const string CLASS_BUTTON_DISABLED = "button-disabled";
+    private const string CLASS_LOADER = "loader";
+
     public Label Team1Money { get; set; }
     public Button Team1Unit1Button { get; set; }
 
@@ -27,34 +30,22 @@ public class UIManager : MonoBehaviour
         this.Team2Money = root.Q<Label>("lbTeam2Money");
         GameManager.Instance.Team2.OnMoneyChanged += this.Team2_OnMoneyChanged;
 
-        // Set team units
-        root.Query<Label>().ForEach(l => this.FillLabel(l));
-
-        // Handle unit creation buttons
-        root.Query<Button>().ForEach(b => b.clickable.clickedWithEventInfo += this.Clickable_ClickedWithEventInfo);
+        // Initialize labels & buttons
+        root.Query<Label>().ForEach(l => this.InitializeLabel(l));
+        root.Query<Button>().ForEach(b => this.InitializeButton(b));
     }
 
     private void Team1_OnMoneyChanged(object sender, EventArgs e)
     {
         this.Team1Money.text = $"{GameManager.Instance.Team1.Money} $";
+        this.RefreshButtonEnabled(GameManager.Instance.Team1);
     }
     private void Team2_OnMoneyChanged(object sender, EventArgs e)
     {
         this.Team2Money.text = $"{GameManager.Instance.Team2.Money} $";
+        this.RefreshButtonEnabled(GameManager.Instance.Team2);
     }
 
-    private void FillLabel(Label label)
-    {
-        if(this.TryParse(label, out TeamSettings team, out UnitTypeSettings unitType, out string info))
-        {
-            switch (info)
-            {
-                case "Key": label.text = unitType.Shortcut.ToString(); break;
-                case "Cost": label.text = $"{unitType.Cost}$"; break;
-                case "Name": label.text = unitType.Name; break;
-            }
-        }
-    }
     private bool TryParse(VisualElement control, out TeamSettings team, out UnitTypeSettings unitType, out string info)
     {
         var match = Regex.Match(control.name, "[a-z]+T([0-9])U([0-9])([a-zA-Z]*)");
@@ -76,6 +67,44 @@ public class UIManager : MonoBehaviour
 
         return match.Success;
     }
+    private void InitializeLabel(Label label)
+    {
+        if(this.TryParse(label, out TeamSettings team, out UnitTypeSettings unitType, out string info))
+        {
+            switch (info)
+            {
+                case "Key": label.text = unitType.Shortcut.ToString(); break;
+                case "Cost": label.text = $"{unitType.Cost}$"; break;
+                case "Name": label.text = unitType.Name; break;
+            }
+        }
+    }
+    private void InitializeButton(Button button)
+    {
+        button.clickable.clickedWithEventInfo += this.Clickable_ClickedWithEventInfo;
+        if (this.TryParse(button, out TeamSettings team, out UnitTypeSettings unitType, out string info))
+        {
+            unitType.Button = button;
+            if(team.Money < unitType.Cost)
+            {
+                button.AddToClassList(CLASS_BUTTON_DISABLED);
+            }
+        }
+    }
+    private void RefreshButtonEnabled(TeamSettings team)
+    {
+        foreach(UnitTypeSettings unitType in team.UnitTypes)
+        {
+            if (team.Money < unitType.Cost)
+            {
+                unitType.Button.AddToClassList(CLASS_BUTTON_DISABLED);
+            }
+            else
+            {
+                unitType.Button.RemoveFromClassList(CLASS_BUTTON_DISABLED);
+            }
+        }
+    }
 
     private void Clickable_ClickedWithEventInfo(EventBase obj)
     {
@@ -90,6 +119,9 @@ public class UIManager : MonoBehaviour
     {
         this.CheckTeamShortcuts(GameManager.Instance.Team1);
         this.CheckTeamShortcuts(GameManager.Instance.Team2);
+
+        this.UpdateTeamCooldowns(GameManager.Instance.Team1);
+        this.UpdateTeamCooldowns(GameManager.Instance.Team2);
     }
     private void CheckTeamShortcuts(TeamSettings team)
     {
@@ -102,12 +134,30 @@ public class UIManager : MonoBehaviour
             this.Build(team, unitType);
         }
     }
+    private void UpdateTeamCooldowns(TeamSettings team)
+    {
+        foreach(UnitTypeSettings unitType in team.UnitTypes)
+        {
+            if (unitType.CanBuildAt0 <= 0)
+            {
+                continue;
+            }
+
+            unitType.CanBuildAt0 -= Time.deltaTime;
+            if (unitType.CanBuildAt0 <= 0)
+            {
+                unitType.CanBuildAt0 = 0;
+            }
+
+            var loader = unitType.Button.Children().First(c => c.ClassListContains(CLASS_LOADER));
+            loader.style.height = unitType.CanBuildAt0 / unitType.CoolDown * 100;
+        }
+    }
 
     private void Build(TeamSettings team, UnitTypeSettings unitType)
     {
-        if(team.Money < unitType.Cost)
+        if(!unitType.CanBuild(team))
         {
-            Debug.Log($"Not enough money for a '{unitType.Name}'");
             return;
         }
 
@@ -122,6 +172,7 @@ public class UIManager : MonoBehaviour
 
         // Pay the cost
         team.Money -= unitType.Cost;
-        Debug.Log($"'{unitType.Name}' built");
+        // Start cooldown
+        unitType.StartCooldown();
     }
 }

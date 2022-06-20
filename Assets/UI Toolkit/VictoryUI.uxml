@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/VictoryStyle.uss?fileID=7433441132597879392&amp;guid=b8dd9fe42ec20c64e85f71c3c4ac9f76&amp;type=3#VictoryStyle" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78); justify-content: center; align-items: center; display: flex;">
+        <ui:GroupBox name="Box" style="width: 50%; height: 50%; background-color: rgb(255, 255, 255); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; flex-direction: column;">
+            <ui:IMGUIContainer name="iWinner" style="background-image: url(&apos;project://database/Assets/Sprites/Robot1.png?fileID=21300000&amp;guid=dc97e379a3106084c88c3399a243cbc5&amp;type=3#Robot1&apos;); width: 200px; height: 200px; position: absolute; top: 29px; left: 10%;" />
+            <ui:Label text="Les Robots ont gagné !" display-tooltip-when-elided="true" name="lbVictory" style="-unity-text-align: upper-center; font-size: 32px; -unity-font-style: bold; margin-top: 20px;" />
+            <ui:Button text="Recommencer" display-tooltip-when-elided="true" name="bStart" class="button" style="margin-top: 50px;" />
+            <ui:Button text="Quitter" display-tooltip-when-elided="true" name="bQuit" class="button" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Root" style="flex-grow: 1; align-items: center; width: auto; background-image: url(&apos;project://database/Assets/Textures/Background.png?fileID=2800000&amp;guid=44131323fd7cb1b40b954772e341f765&amp;type=3#Background&apos;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.55);">
+        <ui:IMGUIContainer style="background-image: url(&apos;project://database/Assets/Textures/title.png?fileID=2800000&amp;guid=313f229dadec30b40aed43dfff7f2a34&amp;type=3#title&apos;); width: 900px; height: 300px; margin-top: 20px;" />
+        <ui:Button text="Démarrer la partie" display-tooltip-when-elided="true" name="bStart" style="background-color: rgb(255, 255, 255); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; width: 315px; height: 100px; font-size: 27px; margin-top: 20px;" />
+        <ui:Label text="Dessins, bruitages et concept de Cricri et Valou" display-tooltip-when-elided="true" style="-unity-text-align: upper-left; position: absolute; bottom: 20px; font-size: 27px;" />
+    </ui:VisualElement>
+</ui:UXML>

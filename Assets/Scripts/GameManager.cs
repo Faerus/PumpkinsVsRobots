@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : InstanceMonoBehaviour<GameManager>
 {
@@ -73,6 +74,11 @@ public class TeamSettings
         {
             _health = value;
             this.HealthBar.SetHealth(value);
+
+            if(_health <= 0)
+            {
+                this.OnTeamDead?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 
@@ -104,6 +110,7 @@ public class TeamSettings
     public List<Unit> Units { get; set; } = new List<Unit>();
     public int UnitCounter { get; set; }
 
+    public event EventHandler OnTeamDead;
     public event EventHandler OnMoneyChanged;
 
     public void Initialize()
@@ -145,6 +152,16 @@ public class UnitTypeSettings
     [field: SerializeField]
     public KeyCode Shortcut { get; set; }
 
+    [field: Header("Attack")]
+    [field: SerializeField]
+    public float Power { get; set; } = 10;
+
+    [field: SerializeField]
+    public float AttackFrequency { get; set; } = 1;
+
+    [field: SerializeField]
+    public float AttackDistance { get; set; } = 1f;
+
     [field: Header("Visual")]
     [field: SerializeField]
     public GameObject Prefab { get; set; }
@@ -155,13 +172,18 @@ public class UnitTypeSettings
     [field: SerializeField]
     public float Scale { get; set; } = 1;
 
-    [field: Header("Attack")]
     [field: SerializeField]
-    public float Power { get; set; } = 10;
+    public float CoolDown { get; set; } = 5;
+    public float CanBuildAt0 { get; set; }
+    public Button Button { get; set; }
 
-    [field: SerializeField]
-    public float AttackFrequency { get; set; } = 1;
+    public void StartCooldown()
+    {
+        this.CanBuildAt0 = this.CoolDown;
+    }
 
-    [field: SerializeField]
-    public float AttackDistance { get; set; } = 1f;
+    public bool CanBuild(TeamSettings team)
+    {
+        return team.Money >= this.Cost && this.CanBuildAt0 <= 0;
+    }
 }

@@ -99,11 +99,6 @@ public class Unit : MonoBehaviour
                     this.AttackEnemyTeam();
                 }
 
-                if (this.EnemyTeam.Health < 0)
-                {
-                    Debug.Log("Victoire !!!");
-                }
-
                 this.State = States.Move;
                 break;
         }
@@ -122,7 +117,7 @@ public class Unit : MonoBehaviour
     }
     private bool CanAttackTeam()
     {
-        if (Vector3.Distance(transform.position, this.EnemyTeam.Spawn.position) < this.UnitType.AttackDistance + 1)
+        if (Vector3.Distance(transform.position, this.EnemyTeam.Spawn.position) < this.UnitType.AttackDistance)
         {
             this.State = States.AttackTeam;
             return true;
@@ -148,6 +143,9 @@ public class Unit : MonoBehaviour
         {
             this.State = States.Dead;
             Destroy(this.gameObject, 1);
+
+            // Give money to other team
+            this.EnemyTeam.Money += this.UnitType.Cost - 5;
         }
     }
     private void Knockback(float power)
