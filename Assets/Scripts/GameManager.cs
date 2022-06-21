@@ -128,6 +128,10 @@ public class TeamSettings
 
         return query.FirstOrDefault();
     }
+    public bool IsInRange(Vector3 position, float range, Vector3 targetPosition)
+    {
+        return this.DistanceX(position, targetPosition) <= range;
+    }
     private float DistanceX(Vector3 position1, Vector3 position2)
     {
         return position1.x > position2.x ? position1.x - position2.x : position2.x - position1.x;
@@ -148,6 +152,11 @@ public class UnitTypeSettings
 
     [field: SerializeField]
     public int Cost { get; set; } = 50;
+
+    [field: SerializeField]
+    public float CoolDown { get; set; } = 5;
+    public float CanBuildAt0 { get; set; }
+    public Button Button { get; set; }
 
     [field: SerializeField]
     public KeyCode Shortcut { get; set; }
@@ -172,10 +181,13 @@ public class UnitTypeSettings
     [field: SerializeField]
     public float Scale { get; set; } = 1;
 
+    [field: Header("Animation")]
     [field: SerializeField]
-    public float CoolDown { get; set; } = 5;
-    public float CanBuildAt0 { get; set; }
-    public Button Button { get; set; }
+    public RuntimeAnimatorController AnimatorController { get; set; }
+
+    [field: SerializeField]
+    public float AttackAnimDuration { get; set; } = 0.5f;
+
 
     public void StartCooldown()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public class Unit : MonoBehaviour 
 {
     private const float THORN_DAMAGE_PERCENT = 0.5f;
@@ -12,7 +12,8 @@ public class Unit : MonoBehaviour
     {
         Move,
         AttackUnit,
-        AttackTeam,
+        AttackCastle,
+        AnimationInProgress,
         Dead
     }
     public States State { get; private set; }
@@ -36,6 +37,8 @@ public class Unit : MonoBehaviour
     private Unit TargetEnemy { get; set; }
     private float Direction { get; set; } = 1;
     private SpriteRenderer SpriteRenderer { get; set; }
+    private Animator Animator { get; set; }
+    private bool AnimationInProgress { get; set; }
 
     [field:SerializeField]
     private HealthBar HealthBar { get; set; }
@@ -43,6 +46,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         this.SpriteRenderer = this.GetComponent<SpriteRenderer>();
+        this.Animator = this.GetComponent<Animator>();
     }
 
     public void Initialize(TeamSettings team, UnitTypeSettings unitType)
@@ -60,10 +64,17 @@ public class Unit : MonoBehaviour
 
         transform.localScale *= unitType.Scale;
         this.SpriteRenderer.sprite = unitType.Sprite;
+        this.Animator.runtimeAnimatorController = unitType.AnimatorController;
+        this.PlayAnimation("Walk");
     }
 
     private void Update()
     {
+        if(this.AnimationInProgress)
+        {
+            return;
+        }
+
         switch (this.State)
         {
             case States.Move:
@@ -76,27 +87,18 @@ public class Unit : MonoBehaviour
                 {
                     break;
                 }
-                
+
+                this.PlayAnimation("Walk");
                 transform.position += new Vector3(this.Direction * this.UnitType.Speed * Time.deltaTime, 0, 0);
                 break;
 
             case States.AttackUnit:
-                this.CanAttackIf0 -= Time.deltaTime;
-                if(this.CanAttackIf0 <= 0)
-                {
-                    this.CanAttackIf0 = this.UnitType.AttackFrequency;
-                    this.Attack(this.TargetEnemy);
-                }
-
-                this.State = States.Move;
-                break;
-
-            case States.AttackTeam:
+            case States.AttackCastle:
                 this.CanAttackIf0 -= Time.deltaTime;
                 if (this.CanAttackIf0 <= 0)
                 {
                     this.CanAttackIf0 = this.UnitType.AttackFrequency;
-                    this.AttackEnemyTeam();
+                    this.PlayAndInvoke("Attack", this.State.ToString(), this.UnitType.AttackAnimDuration);
                 }
 
                 this.State = States.Move;
@@ -119,21 +121,55 @@ public class Unit : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, this.EnemyTeam.Spawn.position) < this.UnitType.AttackDistance)
         {
-            this.State = States.AttackTeam;
+            this.State = States.AttackCastle;
             return true;
         }
 
         return false;
     }
 
-    private void AttackEnemyTeam()
+    private void PlayAnimation(string animation)
     {
-        this.EnemyTeam.Health -= this.UnitType.Power;
-        this.ReceiveDamage(this.UnitType.Power * THORN_DAMAGE_PERCENT);
+        if(this.Animator != null && this.Animator.runtimeAnimatorController != null)
+        {
+            this.Animator.Play(animation);
+        }
     }
-    private void Attack(Unit enemy)
+    private void PlayAndInvoke(string animation, string callbackMethod, float callbackDelay)
     {
-        enemy.ReceiveDamage(this.UnitType.Power);
+        this.PlayAnimation(animation);
+        this.AnimationInProgress = true;
+        this.Invoke(callbackMethod, callbackDelay);
+    }
+    private void AttackCastle()
+    {
+        // Miss if ennemi is not in range anymore
+        if(this.Team.IsInRange(transform.position, this.UnitType.AttackDistance, this.EnemyTeam.Spawn.position))
+        {
+            this.EnemyTeam.Health -= this.UnitType.Power;
+            this.ReceiveDamage(this.UnitType.Power * THORN_DAMAGE_PERCENT);
+        }
+        else
+        {
+            // Miss if enemy is not in range anymore
+            Debug.Log("Attack missed !");
+        }
+
+        this.AnimationInProgress = false;
+    }
+    private void AttackUnit()
+    {
+        if (this.Team.IsInRange(transform.position, this.UnitType.AttackDistance, this.TargetEnemy.transform.position))
+        {
+            this.TargetEnemy.ReceiveDamage(this.UnitType.Power);
+        }
+        else
+        {
+            // Miss if enemy is not in range anymore
+            Debug.Log("Attack missed !");
+        }
+        
+        this.AnimationInProgress = false;
     }
     private void ReceiveDamage(float damage)
     {
@@ -142,7 +178,8 @@ public class Unit : MonoBehaviour
         if (this.Health < 0)
         {
             this.State = States.Dead;
-            Destroy(this.gameObject, 1);
+            this.PlayAnimation("Die");
+            Destroy(this.gameObject, 3);
 
             // Give money to other team
             this.EnemyTeam.Money += this.UnitType.Cost - 5;
@@ -150,7 +187,14 @@ public class Unit : MonoBehaviour
     }
     private void Knockback(float power)
     {
-        transform.position -= new Vector3(this.Direction * power, 0, 0);
+        float newX = transform.position.x - this.Direction * power;
+        if((this.Direction < 0 && newX > this.Team.Spawn.position.x)
+        || (this.Direction > 0 && newX < this.Team.Spawn.position.x))
+        {
+            newX = this.Team.Spawn.position.x;
+        }
+
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 
     private void OnDestroy()

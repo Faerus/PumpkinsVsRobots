@@ -961,6 +961,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: d3c45767b37104847b6afa1734afd76d, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 0.75
       <CoolDown>k__BackingField: 5
     - <Name>k__BackingField: "For\xE7ado"
@@ -973,6 +974,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 0.8
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 35291421e6a56d44b95c58e9c231ab45, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1
       <CoolDown>k__BackingField: 8
     - <Name>k__BackingField: Hopitagneuse
@@ -985,6 +987,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 4
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 62dec4ae09abaa84e877fcbb203e8ee8, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.25
       <CoolDown>k__BackingField: 11
     - <Name>k__BackingField: Gradabouch
@@ -997,6 +1000,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 574fb0540b2a7714782c025f47ed4467, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.45
       <CoolDown>k__BackingField: 9
     - <Name>k__BackingField: Gorzabouch
@@ -1009,6 +1013,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1.1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 26f49068544415d449acb528fde0a404, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.75
       <CoolDown>k__BackingField: 25
   <Team2>k__BackingField:
@@ -1028,6 +1033,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: dc97e379a3106084c88c3399a243cbc5, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 0.75
       <CoolDown>k__BackingField: 5
     - <Name>k__BackingField: Quet2.0
@@ -1040,6 +1046,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 0.8
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: c3c8098f8f32dc2479b5e7600f26466b, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1
       <CoolDown>k__BackingField: 8
     - <Name>k__BackingField: Essai 10000
@@ -1052,6 +1059,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 4
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: c1a2b6a15a7e99942808eaaf2eb8d669, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.25
       <CoolDown>k__BackingField: 11
     - <Name>k__BackingField: Sicn
@@ -1064,6 +1072,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 2d6fd5b5ef38f1e419f3fb7ac8c176c8, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 9100000, guid: f7e2ca015dfd95b4892c236c1b09b174, type: 2}
       <Scale>k__BackingField: 1.5
       <CoolDown>k__BackingField: 9
     - <Name>k__BackingField: Critik de mort
@@ -1076,6 +1085,7 @@ MonoBehaviour:
       <AttackDistance>k__BackingField: 1.1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 66ccf8c3428c2b34fbad8cb5e2ba2a48, type: 3}
+      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 2
       <CoolDown>k__BackingField: 25
 --- !u!1 &1300923756
