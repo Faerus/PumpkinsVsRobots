@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
 {
     private const string CLASS_BUTTON_DISABLED = "button-disabled";
     private const string CLASS_LOADER = "loader";
+    private const float SPAWN_Y_VARIANCE = .5f;
 
     public Label Team1Money { get; set; }
     public Button Team1Unit1Button { get; set; }
@@ -162,9 +163,9 @@ public class GameUI : MonoBehaviour
         }
 
         var gameObject = Instantiate(AssetManager.Instance.Unit, team.Spawn);
-        gameObject.name = $"{unitType.Name}{++team.UnitCounter}";
+        gameObject.name = $"{unitType.Name} {++team.UnitCounter}";
 
-        float spawnVariance = UnityEngine.Random.Range(-0.5f, 0.5f);
+        float spawnVariance = UnityEngine.Random.Range(-SPAWN_Y_VARIANCE, SPAWN_Y_VARIANCE);
         gameObject.transform.position = team.Spawn.position + new Vector3(0, spawnVariance, spawnVariance);
 
         Unit unit = gameObject.GetComponent<Unit>();

@@ -14,7 +14,9 @@ public class GameManager : InstanceMonoBehaviour<GameManager>
     [field: SerializeField]
     public int MoneyIncrement { get; set; } = 5;
     [field: SerializeField]
-    public float MoneyIncrementFrequency { get; set; } = 0.5f;
+    public float MoneyIncrementFrequency { get; set; } = .5f;
+    [field: SerializeField]
+    public float MoneyEarnedPercent { get; set; } = .8f;
 
     [field: Header("Teams")]
     [field: SerializeField]
@@ -28,6 +30,18 @@ public class GameManager : InstanceMonoBehaviour<GameManager>
         this.Team2.Initialize();
 
         this.InvokeRepeating("IncrementMoney", this.MoneyIncrementFrequency, this.MoneyIncrementFrequency);
+    }
+
+    private void Update()
+    {
+        // Cheat code for max money :)
+        if(Input.GetKey(KeyCode.LeftControl)
+        && Input.GetKey(KeyCode.C)
+        && Input.GetKey(KeyCode.V))
+        {
+            this.Team1.Money = this.MaxMoney;
+            this.Team2.Money = this.MaxMoney;
+        }
     }
 
     private void IncrementMoney()
@@ -118,15 +132,17 @@ public class TeamSettings
         this.HealthBar.SetMaxHealth(this.Health);
     }
 
+    public IEnumerable<Unit> GetClosests(Vector3 position, float range)
+    {
+        return from unit in this.Units
+               let distance = this.DistanceX(unit.transform.position, position)
+               where distance <= range && unit.State != Unit.States.Dead
+               orderby distance
+               select unit;
+    }
     public Unit GetClosest(Vector3 position, float range)
     {
-        var query = from unit in this.Units
-                    let distance = this.DistanceX(unit.transform.position, position)
-                    where distance <= range && unit.State != Unit.States.Dead
-                    orderby distance
-                    select unit;
-
-        return query.FirstOrDefault();
+        return this.GetClosests(position, range).FirstOrDefault();
     }
     public bool IsInRange(Vector3 position, float range, Vector3 targetPosition)
     {
@@ -171,6 +187,12 @@ public class UnitTypeSettings
     [field: SerializeField]
     public float AttackDistance { get; set; } = 1f;
 
+    [field: SerializeField]
+    public bool HasAreaAttack { get; set; }
+
+    [field: SerializeField]
+    public int KnockbackCount { get; set; } = 3;
+
     [field: Header("Visual")]
     [field: SerializeField]
     public GameObject Prefab { get; set; }
@@ -188,14 +210,27 @@ public class UnitTypeSettings
     [field: SerializeField]
     public float AttackAnimDuration { get; set; } = 0.5f;
 
-
     public void StartCooldown()
     {
         this.CanBuildAt0 = this.CoolDown;
     }
-
     public bool CanBuild(TeamSettings team)
     {
         return team.Money >= this.Cost && this.CanBuildAt0 <= 0;
+    }
+
+    public bool ShouldKnockback(float initialHealth, float damage)
+    {
+        // ex:
+        // 100 PV et 3 knockbacks = 25, 50, 75
+        // 100 PV et 4 knockbacks = 20, 40, 60, 80
+        float step = this.Health / (this.KnockbackCount + 1);
+        List<float> steps = new List<float>();
+        for(int i = 1; i < this.KnockbackCount; ++i)
+        {
+            steps.Add(step * i);
+        }
+
+        return steps.Any(s => initialHealth >= s && (initialHealth - damage) < s);
     }
 }

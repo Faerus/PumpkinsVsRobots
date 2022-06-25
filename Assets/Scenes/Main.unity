@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286415964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2779481, y: -0.09931597, z: 18.326328}
+  m_LocalPosition: {x: -1.2779481, y: 0.11, z: 18.326328}
   m_LocalScale: {x: 0.72942275, y: 0.52017003, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -310,7 +310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 589a679c1b90cf74fa359bae77cd4556, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.64705884}
   m_FlipX: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 4
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.485
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.1
   m_LightVolumeIntensity: 1
@@ -530,46 +530,151 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.495
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_Vertices:
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+  - position: {x: -0.5, y: -0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
-    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+  - position: {x: 0.5, y: 0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
-    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+  - position: {x: 0.5, y: -0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+  - position: {x: -0.5, y: 0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: 0, y: 0, z: 0}
+  - position: {x: -0.5, y: -0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
+  - position: {x: 0.5, y: -0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.5, y: 0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.5, y: 0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -1, y: -0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9904, y: -0.5974, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9621, y: -0.6911, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.916, y: -0.7774, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.854, y: -0.8531, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.7784, y: -0.9153, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.6922, y: -0.9616, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.5986, y: -0.9902, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.5, y: -1, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.5, y: -1, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.5974, y: -0.9904, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.6911, y: -0.9621, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.7774, y: -0.916, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.8531, y: -0.854, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9153, y: -0.7784, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9616, y: -0.6922, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9902, y: -0.5986, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 1, y: -0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 1, y: 0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9904, y: 0.5974, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9621, y: 0.6911, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.916, y: 0.7774, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.854, y: 0.8531, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.7784, y: 0.9153, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.6922, y: 0.9616, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.5986, y: 0.9902, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.5, y: 1, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.5, y: 1, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.5974, y: 0.9904, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.6911, y: 0.9621, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.7774, y: 0.916, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.8531, y: 0.854, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9153, y: 0.7784, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9616, y: 0.6922, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9902, y: 0.5986, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -1, y: 0.5, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  m_Triangles: 000001000200010000000300040008000800040008000900040009000a0004000a000b0004000b000c0004000c000d0004000d000e0004000e000f0004000f001000040005001100040010001100050011001200050012001300050013001400050014001500050015001600050016001700050017001800050018001900050006001a00050019001a0006001a001b0006001b001c0006001c001d0006001d001e0006001e001f0006001f002000060020002100060007002200060021002200070022002300070023002400070024002500070025002600070026002700070027002800070028002900070029002a0007002a002b0008000400070008002b000700
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1, y: 1, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 10
+  m_PointLightInnerRadius: 1.5311539
+  m_PointLightOuterRadius: 13.09
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -588,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619394800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2779481, y: 0.36368403, z: 8.326328}
+  m_LocalPosition: {x: -1.82, y: 0.1, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -605,6 +710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792468709}
   - component: {fileID: 792468710}
+  - component: {fileID: 792468711}
   m_Layer: 0
   m_Name: Castle 1
   m_TagString: Untagged
@@ -649,7 +755,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -669,7 +775,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 3ca22ad2185cbf74d992607468d19fdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -681,6 +787,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &792468711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792468708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -4, y: 0.00000011920929, z: 0}
+  - {x: -4, y: 8, z: 0}
+  - {x: 4, y: 8, z: 0}
+  - {x: 4, y: 0.00000011920929, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 1358049340}
+  m_InstanceId: 45962
 --- !u!1 &794158735
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +904,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -791,7 +924,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2df75de994515604fb166c2b61d83a9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -944,6 +1077,7 @@ MonoBehaviour:
   <MaxMoney>k__BackingField: 1000
   <MoneyIncrement>k__BackingField: 1
   <MoneyIncrementFrequency>k__BackingField: 0.5
+  <MoneyEarnedPercent>k__BackingField: 0.8
   <Team1>k__BackingField:
     <Name>k__BackingField: Les Citrouilles
     _health: 1000
@@ -952,70 +1086,85 @@ MonoBehaviour:
     _money: 15
     <UnitTypes>k__BackingField:
     - <Name>k__BackingField: Crababouch
-      <Health>k__BackingField: 100
-      <Speed>k__BackingField: 1
+      <Health>k__BackingField: 50
+      <Speed>k__BackingField: 0.5
       <Cost>k__BackingField: 20
+      <CoolDown>k__BackingField: 5
       <Shortcut>k__BackingField: 97
-      <Power>k__BackingField: 8
+      <Power>k__BackingField: 10
       <AttackFrequency>k__BackingField: 1.2
-      <AttackDistance>k__BackingField: 1
+      <AttackDistance>k__BackingField: 1.2
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: d3c45767b37104847b6afa1734afd76d, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 0.75
-      <CoolDown>k__BackingField: 5
+      <AnimatorController>k__BackingField: {fileID: 9100000, guid: 36f56e0aa0ae6d840afa6146e575cc5a, type: 2}
+      <AttackAnimDuration>k__BackingField: 1
     - <Name>k__BackingField: "For\xE7ado"
-      <Health>k__BackingField: 400
+      <Health>k__BackingField: 200
       <Speed>k__BackingField: 0.8
       <Cost>k__BackingField: 40
+      <CoolDown>k__BackingField: 8
       <Shortcut>k__BackingField: 122
-      <Power>k__BackingField: 2
+      <Power>k__BackingField: 5
       <AttackFrequency>k__BackingField: 2.2
-      <AttackDistance>k__BackingField: 0.8
+      <AttackDistance>k__BackingField: 1.4
+      <HasAreaAttack>k__BackingField: 1
+      <KnockbackCount>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 35291421e6a56d44b95c58e9c231ab45, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1
-      <CoolDown>k__BackingField: 8
+      <AnimatorController>k__BackingField: {fileID: 9100000, guid: 278dedbe862106a449a0be08ebc923fa, type: 2}
+      <AttackAnimDuration>k__BackingField: 1.2
     - <Name>k__BackingField: Hopitagneuse
-      <Health>k__BackingField: 400
+      <Health>k__BackingField: 250
       <Speed>k__BackingField: 1
       <Cost>k__BackingField: 160
+      <CoolDown>k__BackingField: 11
       <Shortcut>k__BackingField: 101
       <Power>k__BackingField: 100
       <AttackFrequency>k__BackingField: 4.2
       <AttackDistance>k__BackingField: 4
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 62dec4ae09abaa84e877fcbb203e8ee8, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.25
-      <CoolDown>k__BackingField: 11
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
     - <Name>k__BackingField: Gradabouch
-      <Health>k__BackingField: 500
+      <Health>k__BackingField: 400
       <Speed>k__BackingField: 3
       <Cost>k__BackingField: 200
+      <CoolDown>k__BackingField: 9
       <Shortcut>k__BackingField: 114
       <Power>k__BackingField: 13
       <AttackFrequency>k__BackingField: 0.33
       <AttackDistance>k__BackingField: 1
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 5
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 574fb0540b2a7714782c025f47ed4467, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.45
-      <CoolDown>k__BackingField: 9
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
     - <Name>k__BackingField: Gorzabouch
-      <Health>k__BackingField: 1000
+      <Health>k__BackingField: 600
       <Speed>k__BackingField: 0.8
-      <Cost>k__BackingField: 520
+      <Cost>k__BackingField: 420
+      <CoolDown>k__BackingField: 25
       <Shortcut>k__BackingField: 116
       <Power>k__BackingField: 280
       <AttackFrequency>k__BackingField: 2.2
-      <AttackDistance>k__BackingField: 1.1
+      <AttackDistance>k__BackingField: 1.2
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 26f49068544415d449acb528fde0a404, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.75
-      <CoolDown>k__BackingField: 25
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
   <Team2>k__BackingField:
     <Name>k__BackingField: Les Robots
     _health: 1000
@@ -1024,70 +1173,85 @@ MonoBehaviour:
     _money: 15
     <UnitTypes>k__BackingField:
     - <Name>k__BackingField: Zafer
-      <Health>k__BackingField: 100
-      <Speed>k__BackingField: 1
+      <Health>k__BackingField: 50
+      <Speed>k__BackingField: 0.5
       <Cost>k__BackingField: 20
+      <CoolDown>k__BackingField: 5
       <Shortcut>k__BackingField: 104
-      <Power>k__BackingField: 8
+      <Power>k__BackingField: 10
       <AttackFrequency>k__BackingField: 1.2
-      <AttackDistance>k__BackingField: 1
+      <AttackDistance>k__BackingField: 1.2
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: dc97e379a3106084c88c3399a243cbc5, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 0.75
-      <CoolDown>k__BackingField: 5
-    - <Name>k__BackingField: Quet2.0
-      <Health>k__BackingField: 400
+      <AnimatorController>k__BackingField: {fileID: 9100000, guid: 370829d3df6f7f74a848b0a240599393, type: 2}
+      <AttackAnimDuration>k__BackingField: 1
+    - <Name>k__BackingField: Quet 2.0
+      <Health>k__BackingField: 200
       <Speed>k__BackingField: 0.8
       <Cost>k__BackingField: 40
+      <CoolDown>k__BackingField: 8
       <Shortcut>k__BackingField: 106
-      <Power>k__BackingField: 2
+      <Power>k__BackingField: 5
       <AttackFrequency>k__BackingField: 2.2
-      <AttackDistance>k__BackingField: 0.8
+      <AttackDistance>k__BackingField: 1.4
+      <HasAreaAttack>k__BackingField: 1
+      <KnockbackCount>k__BackingField: 1
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: c3c8098f8f32dc2479b5e7600f26466b, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1
-      <CoolDown>k__BackingField: 8
-    - <Name>k__BackingField: Essai 10000
-      <Health>k__BackingField: 400
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
+    - <Name>k__BackingField: Essai 10k
+      <Health>k__BackingField: 250
       <Speed>k__BackingField: 1
       <Cost>k__BackingField: 160
+      <CoolDown>k__BackingField: 11
       <Shortcut>k__BackingField: 107
       <Power>k__BackingField: 100
       <AttackFrequency>k__BackingField: 4.2
       <AttackDistance>k__BackingField: 4
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: c1a2b6a15a7e99942808eaaf2eb8d669, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 1.25
-      <CoolDown>k__BackingField: 11
-    - <Name>k__BackingField: Sicn
-      <Health>k__BackingField: 500
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
+    - <Name>k__BackingField: Cycle
+      <Health>k__BackingField: 400
       <Speed>k__BackingField: 3
       <Cost>k__BackingField: 200
+      <CoolDown>k__BackingField: 9
       <Shortcut>k__BackingField: 108
       <Power>k__BackingField: 13
       <AttackFrequency>k__BackingField: 0.33
-      <AttackDistance>k__BackingField: 1
+      <AttackDistance>k__BackingField: 1.5
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 5
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 2d6fd5b5ef38f1e419f3fb7ac8c176c8, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 9100000, guid: f7e2ca015dfd95b4892c236c1b09b174, type: 2}
       <Scale>k__BackingField: 1.5
-      <CoolDown>k__BackingField: 9
+      <AnimatorController>k__BackingField: {fileID: 9100000, guid: f7e2ca015dfd95b4892c236c1b09b174, type: 2}
+      <AttackAnimDuration>k__BackingField: 1.1
     - <Name>k__BackingField: Critik de mort
-      <Health>k__BackingField: 1000
+      <Health>k__BackingField: 600
       <Speed>k__BackingField: 0.8
-      <Cost>k__BackingField: 520
+      <Cost>k__BackingField: 420
+      <CoolDown>k__BackingField: 25
       <Shortcut>k__BackingField: 109
       <Power>k__BackingField: 280
       <AttackFrequency>k__BackingField: 2.2
-      <AttackDistance>k__BackingField: 1.1
+      <AttackDistance>k__BackingField: 1.2
+      <HasAreaAttack>k__BackingField: 0
+      <KnockbackCount>k__BackingField: 3
       <Prefab>k__BackingField: {fileID: 0}
       <Sprite>k__BackingField: {fileID: 21300000, guid: 66ccf8c3428c2b34fbad8cb5e2ba2a48, type: 3}
-      <AnimatorController>k__BackingField: {fileID: 0}
       <Scale>k__BackingField: 2
-      <CoolDown>k__BackingField: 25
+      <AnimatorController>k__BackingField: {fileID: 0}
+      <AttackAnimDuration>k__BackingField: 0
 --- !u!1 &1300923756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1285,170 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!43 &1358049340
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 42
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 16
+    localAABB:
+      m_Center: {x: 0, y: 4, z: 0}
+      m_Extent: {x: 4, y: 4, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 00000100020003000100000003000400010005000400030006000400050004000600070002000800000000000900030001000a00020004000b00010003000c00050007000d00040005000e00060006000f000700
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 16
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 704
+    _typelessdata: 0000804000000034000000000000803f00000080000000800000008000008040000000340000804000000034000080400000004100000000000000800000803f0000008000000080000080400000004100008040000000410000804000008040000000000000803f0000008000000080000000800000804000000041000080400000003400000000000000340000000000000080000080bf00000000000000800000804000000034000080c000000034000000000000004100000000000000800000803f0000008000000080000080c0000000410000804000000041000080c0000000340000000000000080000080bf0000000000000080000080c000000034000080c000000034000080c00000804000000000000080bf000000800000008000000080000080c000000034000080c000000041000080c00000004100000000000080bf000000800000008000000080000080c000000041000080c0000000410000804000008040000000000000803f0000008000000080000000800000804000000041000080400000003400008040000000340000000000000080000080bf0000000000000080000080400000003400008040000000340000804000000041000000000000803f00000080000000800000008000008040000000410000804000000041000000000000004100000000000000800000803f0000008000000080000080c000000041000080400000004100000000000000340000000000000080000080bf00000000000000800000804000000034000080c000000034000080c00000004100000000000000800000803f0000008000000080000080c000000041000080c000000041000080c00000003400000000000080bf000000800000008000000080000080c000000034000080c000000034000080c00000804000000000000080bf000000800000008000000080000080c000000034000080c000000041
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 4, z: 0}
+    m_Extent: {x: 4, y: 4, z: 0}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &1575352881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1521,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 589a679c1b90cf74fa359bae77cd4556, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
   m_FlipX: 0
